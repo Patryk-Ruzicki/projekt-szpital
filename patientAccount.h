@@ -1,3 +1,6 @@
+#ifndef PATIENTACCOUNT_H
+#define PATIENTACCOUNT_H
+
 class PatientAccount {
 private:
     double totalCost;
@@ -11,3 +14,5 @@ public:
     double calculateHospitalStayCost() const;
     double getTotalCost() const;
 };
+
+#endif

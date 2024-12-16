@@ -1,38 +1,23 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <memory>
-using namespace std;
+#include "Surgery.h"
 
-class Surgery{
-public:
-    string surgeryName;
-    int costOfProcedure;
-    Surgery(string O, int C) : surgeryName(O), costOfProcedure(C){}
+Surgery::Surgery() {
+    Operacje.push_back({"Appendectomy", 3500});
+    Operacje.push_back({"Cholecystectomy", 5000});
+    Operacje.push_back({"Knee Arthroscopy", 7500});
+    Operacje.push_back({"Cataract Surgery", 4200});
+    Operacje.push_back({"Heart Bypass Surgery", 20000});
+}
 
-    //void addToTotalCost(Operacje x, PatientAccount y){
-        //
-    //}
-
-    void displaySurgeries(vector<Surgery> Operacje){
-        for (const auto& surgery : Operacje){
-            cout << surgery.surgeryName << " - " << surgery.costOfProcedure << " PLN" << endl; }
+void Surgery::performSurgery(PatientAccount& patient, int choice) {
+    if (choice >= 1 && choice <= Operacje.size()) {
+        patient.addCost(Operacje[choice - 1].costOfProcedure);
+    } else {
+        std::cout << "Nieprawidłowy wybór operacji.\n";
     }
-};
+}
 
-int main(){
-    vector<Surgery> Operacje;
-    Surgery s1("Appendectomy", 3500);
-    Surgery s2("Cholecystectomy", 5000);
-    Surgery s3("Knee Arthroscopy", 7500);
-    Surgery s4("Cataract Surgery", 4200);
-    Surgery s5("Heart Bypass Surgery", 20000);
-
-    Operacje.push_back(s1);
-    Operacje.push_back(s2);
-    Operacje.push_back(s3);
-    Operacje.push_back(s4);
-    Operacje.push_back(s5);
-
-    s1.displaySurgeries(Operacje);
+void Surgery::displaySurgeries() {
+    for (size_t i = 0; i < Operacje.size(); ++i) {
+        std::cout << i + 1 << ". " << Operacje[i].surgeryName << " - " << Operacje[i].costOfProcedure << " PLN" << std::endl;
+    }
 }

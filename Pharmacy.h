@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "PatientAccount.h"
+#include "patientAccount.h"
 
 class Pharmacy {
 private:

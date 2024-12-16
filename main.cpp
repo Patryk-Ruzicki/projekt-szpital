@@ -1,63 +1,54 @@
 #include <iostream>
-#include <string>
 #include "patientAccount.h"
-
-using namespace std;
-
-void displayMenu() {
-    cout << "\n=== Menu ===\n";
-    cout << "1. Ustaw liczbę dni pobytu\n";
-    cout << "2. Dodaj koszt zabiegu\n";
-    cout << "3. Dodaj koszt leku\n";
-    cout << "4. Wypisz pacjenta\n";
-    cout << "5. Wyjście\n";
-    cout << "Twój wybór: ";
-}
+#include "Surgery.h"
+#include "Pharmacy.h"
 
 int main() {
-    PatientAccount account;
-    int choice = 0;
+    PatientAccount patient;
+    Surgery surgery;
+    Pharmacy pharmacy;
+    int choice;
 
-    while (choice != 5) {
-        displayMenu();
-        cin >> choice;
+    std::cout << "Podaj liczbę dni pobytu w szpitalu: ";
+    int days;
+    std::cin >> days;
+    patient.setDaysInHospital(days);
+
+    while (true) {
+        std::cout << "\nMenu:\n";
+        std::cout << "1. Wybierz zabieg chirurgiczny\n";
+        std::cout << "2. Wybierz lek\n";
+        std::cout << "3. Wypisz pacjenta i pokaż koszt leczenia\n";
+        std::cout << "Wybierz opcję: ";
+        std::cin >> choice;
 
         switch (choice) {
-        case 1: {
-            int days;
-            cout << "Podaj liczbę dni pobytu: ";
-            cin >> days;
-            account.setDaysInHospital(days);
-            cout << "Liczba dni ustawiona.\n";
-            break;
-        }
-        case 2: {
-            double cost;
-            cout << "Podaj koszt zabiegu: ";
-            cin >> cost;
-            account.addCost(cost);
-            cout << "Koszt zabiegu dodany.\n";
-            break;
-        }
-        case 3: {
-            double cost;
-            cout << "Podaj koszt leku: ";
-            cin >> cost;
-            account.addCost(cost);
-            cout << "Koszt leku dodany.\n";
-            break;
-        }
-        case 4: {
-            double stayCost = account.calculateHospitalStayCost();
-            double totalCost = account.getTotalCost() + stayCost;
-            cout << "\nCałkowity koszt leczenia pacjenta: " << totalCost << " PLN\n";
-            break;
-        }
-        case 5:
-            cout << "Zakończenie programu.\n";
-            break;
-        default:
-            cout << "Nieprawidłowy wybór. Spróbuj ponownie.\n";
+            case 1:
+                surgery.displaySurgeries();
+                std::cout << "Wybierz zabieg: ";
+                int surgeryChoice;
+                std::cin >> surgeryChoice;
+                surgery.performSurgery(patient, surgeryChoice);
+                break;
+
+            case 2:
+                pharmacy.showMedicines();
+                std::cout << "Wybierz lek: ";
+                int medicineChoice;
+                std::cin >> medicineChoice;
+                pharmacy.prescribeMedicine(patient, medicineChoice);
+                break;
+
+            case 3: {
+                double stayCost = patient.calculateHospitalStayCost();
+                double totalCost = patient.getTotalCost() + stayCost;
+                std::cout << "\nCałkowity koszt leczenia pacjenta: " << totalCost << " PLN\n";
+                return 0;
+            }
+
+            default:
+                std::cout << "Nieprawidłowy wybór. Spróbuj ponownie.\n";
+                break;
         }
     }
 
