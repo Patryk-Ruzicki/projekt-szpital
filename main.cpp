@@ -6,14 +6,12 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include <locale.h>
 
 #include "patientAccount.h"
 #include "Surgery.h"
 #include "Pharmacy.h"
-#include "patientAccount.cpp"
-#include "Surgery.cpp"
-#include "Pharmacy.cpp"
 
 int main() {
     setlocale(LC_CTYPE, "Polish");
@@ -57,7 +55,15 @@ int main() {
             case 3: {
                 double stayCost = patient.calculateHospitalStayCost(); //Obliczanie i wyświetlanie całkowitego kosztu leczenia
                 double totalCost = patient.getTotalCost() + stayCost;
-                std::cout << "\nCalkowity koszt leczenia pacjenta: " << totalCost << " PLN\n";
+
+                std::cout << std::fixed << std::setprecision(2);
+    
+                std::cout << "+--------------------+--------------------+\n";
+                std::cout << "| Koszt pobytu       | Całkowity koszt    |\n";
+                std::cout << "+--------------------+--------------------+\n";
+                std::cout << "| " << std::setw(18) << stayCost << " | " << std::setw(14) << totalCost << " PLN |\n";
+                std::cout << "+--------------------+--------------------+\n";
+                
                 return 0;
             }
 
