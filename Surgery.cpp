@@ -26,7 +26,14 @@ void Surgery::performSurgery(PatientAccount& patient, int choice) {
 
 // Wyświetla dostępne operacje chirurgiczne
 void Surgery::displaySurgeries() {
+    int colWidth = 22;
+    std::cout << "+----+----------------------+----------------------+\n";
+    std::cout << "| Nr | Nazwa zabiegu        | Koszt zabiegu        |\n";
+    std::cout << "+----+----------------------+----------------------+\n";
     for (size_t i = 0; i < Operacje.size(); ++i) {
-        std::cout << i + 1 << ". " << Operacje[i].surgeryName << " - " << Operacje[i].costOfProcedure << " PLN" << std::endl;
+        std::cout << "| " << std::setw(2) << std::left << i + 1 << " | "
+                  << std::setw(colWidth - 2) << std::left << Operacje[i].surgeryName << " | "
+                  << std::setw(colWidth - 6) << std::left << Operacje[i].costOfProcedure << " PLN |\n";
     }
+    std::cout << "+----+----------------------+----------------------+\n";
 }
