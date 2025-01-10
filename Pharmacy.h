@@ -1,6 +1,6 @@
 // Plik: Pharmacy.h
 // Autor: Krzysztof Łągiewczyk
-// Data: 10 stycznia 2025
+// Data: 5 stycznia 2025
 // Opis: Definicja klasy Pharmacy, która zarządza listą leków dostępnych w aptece
 // oraz umożliwia przypisywanie kosztów leków pacjentom.
 
