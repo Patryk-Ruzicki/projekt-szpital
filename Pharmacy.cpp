@@ -26,8 +26,14 @@ void Pharmacy::prescribeMedicine(PatientAccount& patient, int choice) {
 
 // Wyświetla dostępne leki w aptece
 void Pharmacy::showMedicines() {
-    std::cout << "Dostepne leki:\n";
+    int colWidth = 22;
+    std::cout << "+----+----------------------+----------------------+\n";
+    std::cout << "| Nr | Nazwa leku           | Koszt leku           |\n";
+    std::cout << "+----+----------------------+----------------------+\n";
     for (size_t i = 0; i < medicines.size(); ++i) {
-        std::cout << i + 1 << ". " << medicines[i].name << " - " << medicines[i].cost << " PLN\n";
+        std::cout << "| " << std::setw(2) << std::left << i + 1 << " | "
+                  << std::setw(colWidth - 2) << std::left << medicines[i].name << " | "
+                  << std::setw(colWidth - 6) << std::left << medicines[i].cost << " PLN |\n";
     }
+    std::cout << "+----+----------------------+----------------------+\n";
 }
