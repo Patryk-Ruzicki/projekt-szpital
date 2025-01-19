@@ -29,7 +29,7 @@ void Surgery::performSurgery(PatientAccount& patient, int choice) {
 void Surgery::displaySurgeries() {
     int colWidth = 35;
     std::cout << "+----+-----------------------------------+---------------------+\n";
-    std::cout << "| Nr | Nazwa zabiegu             | Koszt zabiegu        |\n";
+    std::cout << "| Nr | Nazwa zabiegu                     | Koszt zabiegu       |\n";
     std::cout << "+----+-----------------------------------+---------------------+\n";
     for (size_t i = 0; i < Operacje.size(); ++i) {
         std::cout << "| " << std::setw(2) << std::left << i + 1 << " | "

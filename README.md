@@ -1,3 +1,3 @@
 # projekt-szpital
 
-[Online GDB](https://onlinegdb.com/mT5FQAjm2)
+[Online GDB](https://onlinegdb.com/klH3J5_5Il)
