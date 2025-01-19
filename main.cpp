@@ -21,7 +21,6 @@ int main() {
     Pharmacy pharmacy;
     int choice;
 
-    // Wprowadzenie liczby dni pobytu pacjenta w szpitalu
     std::cout << "Podaj liczbe dni pobytu w szpitalu: ";
     int days;
     std::cin >> days;
@@ -38,7 +37,7 @@ int main() {
         switch (choice) {
             case 1:
                 surgery.displaySurgeries();
-                std::cout << "Wybierz zabieg: "; //Przyjmowanie i zapisywanie podanego zabiegu
+                std::cout << "Wybierz zabieg: ";
                 int surgeryChoice;
                 std::cin >> surgeryChoice;
                 surgery.performSurgery(patient, surgeryChoice);
@@ -46,14 +45,14 @@ int main() {
 
             case 2:
                 pharmacy.showMedicines();
-                std::cout << "Wybierz lek: "; //Przyjmowanie i zapisywanie podanego leku
+                std::cout << "Wybierz lek: ";
                 int medicineChoice;
                 std::cin >> medicineChoice;
                 pharmacy.prescribeMedicine(patient, medicineChoice);
                 break;
 
             case 3: {
-                double stayCost = patient.calculateHospitalStayCost(); //Obliczanie i wyświetlanie całkowitego kosztu leczenia
+                double stayCost = patient.calculateHospitalStayCost();
                 double totalCost = patient.getTotalCost() + stayCost;
 
                 std::cout << std::fixed << std::setprecision(2);

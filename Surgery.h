@@ -15,21 +15,17 @@
 
 class Surgery {
 private:
-    // Struktura reprezentująca zabieg chirurgiczny z jego nazwą i ceną
     struct Procedure {
-        std::string surgeryName; ///< Nazwa zabiegu chirurgicznego
-        int costOfProcedure; ///< Koszt zabiegu chirurgicznego
+        std::string surgeryName;
+        int costOfProcedure;
     };
-    std::vector<Procedure> Operacje; ///< Lista dostępnych operacji
+    std::vector<Procedure> Operacje;
 
 public:
-    // Konstruktor klasy Surgery. Inicjuje listę dostępnych operacji.
     Surgery();
 
-    // Wykonuje zabieg chirurgiczny i dodaje jego koszt do całkowitego kosztu leczenia pacjenta.
     void performSurgery(PatientAccount& patient, int choice);
 
-    // Wyświetla dostępne operacje chirurgiczne.
     void displaySurgeries();
 };
 
