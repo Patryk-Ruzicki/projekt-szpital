@@ -15,21 +15,17 @@
 
 class Pharmacy {
 private:
-    // Struktura reprezentująca lek z jego nazwą i ceną
     struct Medicine {
-        std::string name; ///< Nazwa leku
-        double cost; ///< Koszt leku
+        std::string name;
+        double cost;
     };
-    std::vector<Medicine> medicines; ///< Lista dostępnych leków
+    std::vector<Medicine> medicines;
 
 public:
-    // Konstruktor klasy Pharmacy. Inicjuje listę dostępnych leków.
     Pharmacy();
 
-    // Przypisuje lek pacjentowi i dodaje koszt leku do całkowitego kosztu leczenia.
     void prescribeMedicine(PatientAccount& patient, int choice);
 
-    // Wyświetla dostępne leki w aptece.
     void showMedicines();
 };
 
