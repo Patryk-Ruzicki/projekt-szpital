@@ -6,6 +6,7 @@
 
 #include "Pharmacy.h"
 
+// Konstruktor klasy Pharmacy. Inicjuje listę dostępnych leków.
 Pharmacy::Pharmacy() {
     medicines.push_back({"Lek przeciwbolowy", 50.0});
     medicines.push_back({"Antybiotyk", 100.0});
@@ -23,6 +24,7 @@ void Pharmacy::prescribeMedicine(PatientAccount& patient, int choice) {
     }
 }
 
+// Wyświetla dostępne medykamenty
 void Pharmacy::showMedicines() {
     int colWidth = 22;
     std::cout << "+----+----------------------+----------------------+\n";

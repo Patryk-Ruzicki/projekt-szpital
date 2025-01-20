@@ -6,7 +6,6 @@
 
 #include "Surgery.h"
 
-
 // Konstruktor klasy Surgery. Inicjuje listę dostępnych operacji chirurgicznych.
 Surgery::Surgery() {
     Operacje.push_back({"Wyciecie wyrostka", 3500});

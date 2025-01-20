@@ -8,6 +8,7 @@
 #include <string>
 #include <iomanip>
 #include <locale.h>
+#include <limits>
 
 #include "patientAccount.h"
 #include "Surgery.h"
@@ -21,38 +22,80 @@ int main() {
     Pharmacy pharmacy;
     int choice;
 
-    std::cout << "Podaj liczbe dni pobytu w szpitalu: ";
+    // Wprowadzenie liczby dni pobytu pacjenta w szpitalu
     int days;
-    std::cin >> days;
-    patient.setDaysInHospital(days);
+    do {
+        std::cout << "> Podaj liczbe dni pobytu w szpitalu: ";
+        std::cin >> days;
+        
+        if (std::cin.fail() || days <= 0) {
+            std::cin.clear(); 
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Nie poprawna wartosc! ";
+        } else {
+            patient.setDaysInHospital(days);
+            break;
+        }
+    } while (true);
+
 
     while (true) {
-        std::cout << "\nMenu:\n";
-        std::cout << "1. Wybierz zabieg chirurgiczny\n";
-        std::cout << "2. Wybierz lek\n";
-        std::cout << "3. Wypisz pacjenta i pokaz koszt leczenia\n";
-        std::cout << "Wybierz opcje: ";
-        std::cin >> choice;
+        do {
+            std::cout << "\nMenu:\n";
+            std::cout << "1. Wybierz zabieg chirurgiczny\n";
+            std::cout << "2. Wybierz lek\n";
+            std::cout << "3. Wypisz pacjenta i pokaz koszt leczenia\n";
+            std::cout << "> Wybierz ponownie: ";
+            std::cin >> choice;
+            
+            if (std::cin.fail()) {
+                std::cin.clear(); 
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Nie poprawna wartosc!" << std::endl;
+            } else {
+                break;
+            }
+        } while (true);
 
         switch (choice) {
             case 1:
-                surgery.displaySurgeries();
-                std::cout << "Wybierz zabieg: ";
                 int surgeryChoice;
-                std::cin >> surgeryChoice;
-                surgery.performSurgery(patient, surgeryChoice);
+                do {
+                    surgery.displaySurgeries();
+                    std::cout << "> Wybierz zabieg: "; //Przyjmowanie i zapisywanie podanego zabiegu
+                    std::cin >> surgeryChoice;
+                    
+                    if (std::cin.fail() || surgeryChoice < 1 || surgeryChoice > 5) {
+                        std::cin.clear(); 
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Nie poprawna wartosc!" << std::endl;
+                    } else {
+                        surgery.performSurgery(patient, surgeryChoice);
+                        break;
+                    }
+                } while (true);
                 break;
 
             case 2:
-                pharmacy.showMedicines();
-                std::cout << "Wybierz lek: ";
                 int medicineChoice;
-                std::cin >> medicineChoice;
-                pharmacy.prescribeMedicine(patient, medicineChoice);
+                do {
+                    pharmacy.showMedicines();
+                    std::cout << "> Wybierz lek: "; //Przyjmowanie i zapisywanie podanego leku
+                    std::cin >> medicineChoice;
+                    
+                    if (std::cin.fail() || medicineChoice < 1 || medicineChoice > 5) {
+                        std::cin.clear(); 
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Nie poprawna wartosc!" << std::endl;
+                    } else {
+                        pharmacy.prescribeMedicine(patient, medicineChoice);
+                        break;
+                    }
+                } while (true);
                 break;
 
             case 3: {
-                double stayCost = patient.calculateHospitalStayCost();
+                double stayCost = patient.calculateHospitalStayCost(); //Obliczanie i wyświetlanie całkowitego kosztu leczenia
                 double totalCost = patient.getTotalCost() + stayCost;
 
                 std::cout << std::fixed << std::setprecision(2);
